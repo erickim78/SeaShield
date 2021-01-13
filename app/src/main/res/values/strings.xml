@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SeaShield</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Live</string>
+    <string name="title_notifications">Flights</string>
+    <string name="test_notification">Flights Fragment</string>
+</resources>
