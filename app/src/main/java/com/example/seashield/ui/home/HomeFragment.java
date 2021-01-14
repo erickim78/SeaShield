@@ -1,6 +1,7 @@
 package com.example.seashield.ui.home;
 
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,10 +17,14 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.seashield.R;
 
+import org.w3c.dom.Text;
+
 public class HomeFragment extends Fragment {
     private static final String APPNAME = "SeaShield";
 
     private HomeViewModel homeViewModel;
+
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -38,6 +43,9 @@ public class HomeFragment extends Fragment {
 
          */
 
+        TextView hlog = (TextView) root.findViewById( R.id.homeLog );
+        hlog.setMovementMethod( new ScrollingMovementMethod() );
+
 
         Button btn1 = (Button) root.findViewById( R.id.startbutton );
         Button btn2 = (Button) root.findViewById( R.id.stopbutton );
@@ -50,7 +58,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Log.i(APPNAME, "Start Button Pressed");
                 //Communicate with Drone
-
+                hlog.append("\nTIME XX:XX- Drone Starting...");
             }
 
         });
@@ -60,24 +68,27 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Log.i(APPNAME, "End Button Pressed");
                 //Communicate with Drone
+                hlog.append("\nTIME XX:XX- Drone Ending...");
             }
 
         });
 
-        btn2.setOnClickListener( new View.OnClickListener() {
+        btn3.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.i(APPNAME, "Spray Button Pressed");
                 //Communicate with Drone
+                hlog.append("\nTIME XX:XX- Drone Spraying...");
             }
 
         });
 
-        btn2.setOnClickListener( new View.OnClickListener() {
+        btn4.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.i(APPNAME, "Reset Button Pressed");
                 //Communicate with Drone
+                hlog.append("\nTIME XX:XX- Drone Resetting...");
             }
 
         });

@@ -8,8 +8,8 @@
 
     <VideoView
         android:id="@+id/videoView"
-        android:layout_width="1111dp"
-        android:layout_height="461dp"
+        android:layout_width="961dp"
+        android:layout_height="503dp"
         android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
@@ -20,8 +20,8 @@
         android:id="@+id/dashbutton1"
         android:layout_width="220dp"
         android:layout_height="102dp"
-        android:layout_marginStart="280dp"
-        android:layout_marginTop="500dp"
+        android:layout_marginStart="272dp"
+        android:layout_marginTop="512dp"
         android:checked="false"
         android:text="button1"
         android:textOff="Record"
@@ -33,8 +33,8 @@
         android:id="@+id/dashbutton2"
         android:layout_width="220dp"
         android:layout_height="102dp"
-        android:layout_marginTop="500dp"
-        android:layout_marginEnd="284dp"
+        android:layout_marginTop="512dp"
+        android:layout_marginEnd="288dp"
         android:text="button2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/videoView" />

@@ -14,39 +14,80 @@
         android:text="TakeOff"
         app:layout_constraintBottom_toTopOf="@+id/stopbutton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.932" />
 
     <Button
         android:id="@+id/stopbutton"
         android:layout_width="170dp"
         android:layout_height="91dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="60dp"
         android:text="Land"
         app:layout_constraintBottom_toTopOf="@+id/spraybutton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/spraybutton"
         android:layout_width="170dp"
         android:layout_height="91dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="72dp"
         android:text="Spray"
         app:layout_constraintBottom_toTopOf="@+id/resetbutton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/resetbutton"
         android:layout_width="170dp"
         android:layout_height="91dp"
-        android:layout_marginBottom="136dp"
+        android:layout_marginBottom="148dp"
         android:text="Reset"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="195dp"
+        android:layout_height="246dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="944dp"
+        android:contentDescription="TODO"
+        android:src="@mipmap/ic_launcher_foreground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/homeLog"
+        android:layout_width="442dp"
+        android:layout_height="580dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="76dp"
+        android:maxLines="12"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbars="vertical"
+        android:text="TIME XX:XX- Application Started"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="341dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="CURRENT STATUS:"
+        android:textSize="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

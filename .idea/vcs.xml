@@ -2,5 +2,13 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MAVSDK" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MAVSDK/MAVSDK" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MAVSDK/build/default/third_party/curl/curl/src/curl" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MAVSDK/build/default/third_party/jsoncpp/jsoncpp/src/jsoncpp" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MAVSDK/build/default/third_party/zlib/zlib/src/zlib" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MAVSDK/proto" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MAVSDK/src/third_party/gtest" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MAVSDK/src/third_party/mavlink/include/mavlink/v2.0" vcs="Git" />
   </component>
 </project>
