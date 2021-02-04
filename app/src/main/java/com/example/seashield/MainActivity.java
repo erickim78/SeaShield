@@ -1,16 +1,70 @@
 package com.example.seashield;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.NetworkRequest;
+import android.net.wifi.WifiConfiguration;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import android.net.wifi.*;
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+@RequiresApi(api = Build.VERSION_CODES.Q)
 public class MainActivity extends AppCompatActivity {
+
+    WifiNetworkSpecifier.Builder builder = new WifiNetworkSpecifier.Builder()
+            .setSsid("SSID")
+            .setWpa2Passphrase("PWD");
+
+    WifiNetworkSpecifier conf = builder.build();
+
+    NetworkRequest.Builder requestbuilder = new NetworkRequest.Builder()
+            .addTransportType( NetworkCapabilities.TRANSPORT_WIFI )
+            .setNetworkSpecifier( conf );
+
+    NetworkRequest request = requestbuilder.build();
+    ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+    ConnectivityManager.NetworkCallback cb = new ConnectivityManager.NetworkCallback() {
+        @Override
+        public void onAvailable(Network network) {
+            super.onAvailable(network);
+            manager.bindProcessToNetwork(network);
+            //Log.e(TAG,"onAvailable");
+        }
+
+        @Override
+        public void onLosing(@NonNull Network network, int maxMsToLive) {
+            super.onLosing(network, maxMsToLive);
+            //Log.e(TAG,"onLosing");
+        }
+
+        @Override
+        public void onLost(Network network) {
+            super.onLost(network);
+            //Log.e(TAG, "lost active connection");
+        }
+
+        @Override
+        public void onUnavailable() {
+            super.onUnavailable();
+            //Log.e(TAG,"onUnavailable");
+        }
+    };
+
+    //manager.requestNetwork(request,cb);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
