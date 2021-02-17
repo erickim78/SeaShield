@@ -7,48 +7,63 @@
     tools:context=".ui.home.HomeFragment">
 
     <Button
-        android:id="@+id/armbutton"
+        android:id="@+id/armButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="@string/button_spacing"
+        android:layout_marginBottom="@dimen/button_spacing"
         app:backgroundTint="@color/blue"
         android:text="@string/arm"
         app:layout_constraintStart_toStartOf="@+id/ControlBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view"
-        app:layout_constraintBottom_toTopOf="@+id/disarmbutton"/>
+        app:layout_constraintBottom_toTopOf="@+id/disarmButton"/>
 
     <Button
-        android:id="@+id/disarmbutton"
+        android:id="@+id/disarmButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginTop="@string/button_spacing"
-        android:layout_marginBottom="@string/button_spacing"
+        android:layout_marginTop="@dimen/button_spacing"
+        android:layout_marginBottom="@dimen/button_spacing"
         app:backgroundTint="@color/blue"
         android:text="@string/disarm"
         app:layout_constraintStart_toStartOf="@+id/ControlBar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/armbutton"
-        app:layout_constraintBottom_toTopOf="@+id/takeoff" />
+        app:layout_constraintTop_toBottomOf="@+id/armButton"
+        app:layout_constraintBottom_toTopOf="@+id/takeoffButton" />
 
     <Button
-        android:id="@+id/takeoff"
+        android:id="@+id/takeoffButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginTop="@string/button_spacing"
-        android:layout_marginBottom="@string/button_spacing"
+        android:layout_marginTop="@dimen/button_spacing"
+        android:layout_marginBottom="@dimen/button_spacing"
         app:backgroundTint="@color/blue"
-        android:text="Takeoff"
+        android:text="@string/takeoff"
         app:layout_constraintStart_toStartOf="@+id/ControlBar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/disarmbutton"
+        app:layout_constraintTop_toBottomOf="@+id/disarmButton"
+        app:layout_constraintBottom_toTopOf="@+id/landButton" />
+
+    <Button
+        android:id="@+id/landButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="@dimen/button_spacing"
+        android:layout_marginBottom="@dimen/button_spacing"
+        app:backgroundTint="@color/blue"
+        android:text="@string/land"
+        app:layout_constraintStart_toStartOf="@+id/ControlBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/takeoffButton"
         app:layout_constraintBottom_toTopOf="@+id/hoverButton" />
 
     <Button
@@ -57,25 +72,25 @@
         android:layout_height="0dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginTop="@string/button_spacing"
-        android:layout_marginBottom="@string/button_spacing"
+        android:layout_marginTop="@dimen/button_spacing"
+        android:layout_marginBottom="@dimen/button_spacing"
         app:backgroundTint="@color/blue"
-        android:text="Hover"
+        android:text="@string/hover"
         app:layout_constraintStart_toStartOf="@+id/ControlBar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/takeoff"
-        app:layout_constraintBottom_toTopOf="@+id/spraybutton" />
+        app:layout_constraintTop_toBottomOf="@+id/landButton"
+        app:layout_constraintBottom_toTopOf="@+id/sprayButton" />
 
     <Button
-        android:id="@+id/spraybutton"
+        android:id="@+id/sprayButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginTop="@string/button_spacing"
+        android:layout_marginTop="@dimen/button_spacing"
         android:layout_marginBottom="70dp"
         app:backgroundTint="@color/blue"
-        android:text="Spray"
+        android:text="@string/spray"
         app:layout_constraintStart_toStartOf="@+id/ControlBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hoverButton"
@@ -102,7 +117,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
         android:gravity="center"
-        android:text="CURRENT STATUS:"
+        android:text="@string/current_status"
         android:textSize="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -123,7 +138,7 @@
         android:id="@+id/ControlBar"
         android:layout_width="221dp"
         android:layout_height="0dp"
-        android:background="#BFC1C3"
+        android:background="@color/grey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -133,7 +148,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginBottom="46dp"
-        android:background="#2E909C"
+        android:background="@color/teal"
         app:layout_constraintBottom_toBottomOf="@+id/SEASHEILDIcon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

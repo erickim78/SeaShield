@@ -10,6 +10,9 @@
     <string name="disarm">Disarm</string>
     <string name="arm">Arm</string>
     <string name="takeoff">Takeoff</string>
-    <string name="button_spacing">16dp</string>
+    <string name="land">Land</string>
+    <string name="hover">Hover</string>
+    <string name="spray">Spray</string>
+    <string name="current_status">CURRENT STATUS:</string>
 
 </resources>
