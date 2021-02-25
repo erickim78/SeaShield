@@ -14,6 +14,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import android.net.wifi.*;
 import android.util.Log;
 
+
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,8 +23,16 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import org.apache.sshd.client.SshClient;
+import org.apache.sshd.server.forward.AcceptAllForwardingFilter;
+
+
 @RequiresApi(api = Build.VERSION_CODES.Q)
 public class MainActivity extends AppCompatActivity {
+
+    String host, username, password;
+    Integer port;
+
 
     WifiNetworkSpecifier.Builder builder = new WifiNetworkSpecifier.Builder()
             .setSsid("SSID")
@@ -79,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 //        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration); // GOT RID OF THIS TO GET RID OF PURPLE BAR ON TOP
         NavigationUI.setupWithNavController(navView, navController);
+
     }
 
 }
