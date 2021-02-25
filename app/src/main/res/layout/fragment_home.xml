@@ -7,87 +7,211 @@
     tools:context=".ui.home.HomeFragment">
 
     <Button
-        android:id="@+id/startbutton"
-        android:layout_width="170dp"
-        android:layout_height="91dp"
-        android:layout_marginBottom="48dp"
-        android:text="TakeOff"
-        app:layout_constraintBottom_toTopOf="@+id/stopbutton"
+        android:id="@+id/armButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="@dimen/button_spacing"
+        app:backgroundTint="@color/blue"
+        android:text="@string/arm"
+        app:layout_constraintStart_toStartOf="@+id/ControlBar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.46"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintBottom_toTopOf="@+id/disarmButton"/>
+
+    <Button
+        android:id="@+id/disarmButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="@dimen/button_spacing"
+        android:layout_marginBottom="@dimen/button_spacing"
+        app:backgroundTint="@color/blue"
+        android:text="@string/disarm"
+        app:layout_constraintStart_toStartOf="@+id/ControlBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/armButton"
+        app:layout_constraintBottom_toTopOf="@+id/takeoffButton" />
+
+    <Button
+        android:id="@+id/takeoffButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="@dimen/button_spacing"
+        android:layout_marginBottom="@dimen/button_spacing"
+        app:backgroundTint="@color/blue"
+        android:text="@string/takeoff"
+        app:layout_constraintStart_toStartOf="@+id/ControlBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/disarmButton"
+        app:layout_constraintBottom_toTopOf="@+id/landButton" />
+
+    <Button
+        android:id="@+id/landButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="@dimen/button_spacing"
+        android:layout_marginBottom="@dimen/button_spacing"
+        app:backgroundTint="@color/blue"
+        android:text="@string/land"
+        app:layout_constraintStart_toStartOf="@+id/ControlBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/takeoffButton"
+        app:layout_constraintBottom_toTopOf="@+id/hoverButton" />
+
+    <Button
+        android:id="@+id/hoverButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="@dimen/button_spacing"
+        android:layout_marginBottom="@dimen/button_spacing"
+        app:backgroundTint="@color/blue"
+        android:text="@string/hover"
+        app:layout_constraintStart_toStartOf="@+id/ControlBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/landButton"
+        app:layout_constraintBottom_toTopOf="@+id/sprayButton" />
+
+    <Button
+        android:id="@+id/sprayButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="@dimen/button_spacing"
+        android:layout_marginBottom="70dp"
+        app:backgroundTint="@color/blue"
+        android:text="@string/spray"
+        app:layout_constraintStart_toStartOf="@+id/ControlBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hoverButton"
+        app:layout_constraintBottom_toBottomOf="@+id/ControlBar" />
+
+    <VideoView
+        android:id="@+id/videoView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.932" />
-
-    <Button
-        android:id="@+id/stopbutton"
-        android:layout_width="170dp"
-        android:layout_height="91dp"
-        android:layout_marginBottom="60dp"
-        android:text="Land"
-        app:layout_constraintBottom_toTopOf="@+id/spraybutton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.46"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/spraybutton"
-        android:layout_width="170dp"
-        android:layout_height="91dp"
-        android:layout_marginBottom="72dp"
-        android:text="Spray"
-        app:layout_constraintBottom_toTopOf="@+id/resetbutton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.46"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/resetbutton"
-        android:layout_width="170dp"
-        android:layout_height="91dp"
-        android:layout_marginBottom="148dp"
-        android:text="Reset"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.46"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="195dp"
-        android:layout_height="246dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="944dp"
-        android:contentDescription="TODO"
-        android:src="@mipmap/ic_launcher_foreground"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/homeLog"
-        android:layout_width="442dp"
-        android:layout_height="580dp"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="76dp"
-        android:maxLines="12"
-        android:scrollbarAlwaysDrawVerticalTrack="true"
-        android:scrollbars="vertical"
-        android:text="TIME XX:XX- Application Started"
-        android:textSize="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/ControlBar"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintBottom_toTopOf="@+id/status"
+        app:layout_constraintHorizontal_bias="0.4" />
 
     <TextView
         android:id="@+id/status"
         android:layout_width="341dp"
         android:layout_height="47dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
         android:gravity="center"
-        android:text="CURRENT STATUS:"
+        android:text="@string/current_status"
         android:textSize="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/timeRunning"
+        android:layout_width="0dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:text="Time Running: XX:XX:XX"
+        android:textSize="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/status" />
+
+    <View
+        android:id="@+id/ControlBar"
+        android:layout_width="221dp"
+        android:layout_height="0dp"
+        android:background="@color/grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="46dp"
+        android:background="@color/teal"
+        app:layout_constraintBottom_toBottomOf="@+id/SEASHEILDIcon"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <SeekBar
+        android:id="@+id/PumpControlSlider"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="24dp"
+        android:clickable="false"
+        android:progressTint="@color/red"
+        android:thumbTint="@color/red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/ControlBar"
+        app:tickMarkTint="#FFFFFF"
+        tools:targetApi="lollipop" />
+
+    <TextView
+        android:id="@+id/TitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/seashield_contol"
+        android:textColor="@android:color/white"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view" />
+
+    <ImageView
+        android:id="@+id/SEASHEILDIcon"
+        android:layout_width="61dp"
+        android:layout_height="85dp"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/seashield_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/seashield_icon" />
+
+    <TextView
+        android:id="@+id/PumpControlText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="@string/pump_control"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/PumpControlSlider"
+        app:layout_constraintStart_toStartOf="@+id/ControlBar" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="4dp"
+        android:layout_marginBottom="8dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toTopOf="@+id/PumpControlSlider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/ControlBar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
