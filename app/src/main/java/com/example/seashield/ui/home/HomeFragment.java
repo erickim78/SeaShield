@@ -38,7 +38,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.seashield.R;
 
-import org.apache.sshd.client.channel.ClientChannel;
 import org.w3c.dom.Text;
 
 public class HomeFragment extends Fragment {
@@ -52,22 +51,12 @@ public class HomeFragment extends Fragment {
     String command = "echo 'testing' >> commands.txt";
     boolean newcommand = false;
 
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        /*
-        final TextView textView = root.findViewById(R.id.text_home);
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
 
-         */
         host = "192.168.0.72";
         username = "pi";
         password = "placeholder";
@@ -152,6 +141,9 @@ public class HomeFragment extends Fragment {
                 command = "echo 'arm' >> commands.txt\n";
                 newcommand = true;
                 hlog.append("\nTIME XX:XX- Drone Armed...");
+
+                command[0] = "echo 'arm' > commands.tx\n";
+                thread.start();
             }
 
         });
@@ -164,6 +156,9 @@ public class HomeFragment extends Fragment {
                 command = "echo 'disarm' >> commands.txt\n";
                 newcommand = true;
                 hlog.append("\nTIME XX:XX- Drone Disarmed...");
+
+                command[0] = "echo 'disarm' > commands.tx\n";
+                thread.start();
             }
 
         });
@@ -176,6 +171,9 @@ public class HomeFragment extends Fragment {
                 command = "echo 'takeoff' >> commands.txt\n";
                 newcommand = true;
                 hlog.append("\nTIME XX:XX- Drone Taking off...");
+
+                command[0] = "echo 'takeoff' > commands.tx\n";
+                thread.start();
             }
 
         });
@@ -188,6 +186,9 @@ public class HomeFragment extends Fragment {
                 command = "echo 'land' >> commands.txt\n";
                 newcommand = true;
                 hlog.append("\nTIME XX:XX- Drone Landing...");
+
+                command[0] = "echo 'land' > commands.tx\n";
+                thread.start();
             }
 
         });
@@ -200,6 +201,9 @@ public class HomeFragment extends Fragment {
                 command = "echo 'hover' >> commands.txt\n";
                 newcommand = true;
                 hlog.append("\nTIME XX:XX- Drone Hovering...");
+
+                command[0] = "echo 'hover' > commands.tx\n";
+                thread.start();
             }
 
         });
@@ -212,6 +216,9 @@ public class HomeFragment extends Fragment {
                 command = "echo 'spray' >> commands.txt\n";
                 newcommand = true;
                 hlog.append("\nTIME XX:XX- Drone Spraying...");
+
+                command[0] = "echo 'spray' > commands.tx\n";
+                thread.start();
             }
 
         });
