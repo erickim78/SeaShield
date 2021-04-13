@@ -1,5 +1,26 @@
 package com.example.seashield.ui.home;
 
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import org.apache.sshd.client.SshClient;
+import org.apache.sshd.client.channel.ClientChannel;
+import org.apache.sshd.client.channel.ClientChannelEvent;
+import org.apache.sshd.client.session.ClientSession;
+import org.apache.sshd.common.channel.Channel;
+import org.apache.sshd.server.forward.AcceptAllForwardingFilter;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.EnumSet;
+import java.util.concurrent.TimeUnit;
+
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -17,19 +38,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.seashield.R;
 
-import org.apache.sshd.client.SshClient;
-import org.apache.sshd.client.channel.ClientChannel;
-import org.apache.sshd.client.channel.ClientChannelEvent;
-import org.apache.sshd.client.session.ClientSession;
-import org.apache.sshd.common.channel.Channel;
-import org.apache.sshd.server.forward.AcceptAllForwardingFilter;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.EnumSet;
-import java.util.concurrent.TimeUnit;
-
 import org.w3c.dom.Text;
 
 public class HomeFragment extends Fragment {
@@ -37,10 +45,11 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
 
+    ClientChannel channel;
     String host, username, password;
     Integer port;
-    ClientChannel channel;
-
+    String command = "echo 'testing' >> commands.txt";
+    boolean newcommand = false;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -48,44 +57,56 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
 
-        //SSH
-        final String[] command = {"echo 'PLACEHOLDER' > commands.tx\n"};
+        host = "192.168.0.72";
+        username = "pi";
+        password = "placeholder";
+        port = 22;
 
-        //EDIT THESE PARAMETERS
-        host = "192.168.xxx.xxx";
-        username = "";
-        password = "";
-        port = 1;
+        String key = "user.home";
+        Context Syscontext;
+        Syscontext = getActivity().getApplicationContext();
+        String val = Syscontext.getApplicationInfo().dataDir;
+        System.setProperty(key, val);
 
         SshClient client = SshClient.setUpDefaultClient();
         client.setForwardingFilter(AcceptAllForwardingFilter.INSTANCE);
         client.start();
 
-        Thread thread = new Thread(new Runnable() {
+        Thread thread = new Thread( new Runnable() {
             @Override
             public void run() {
                 try {
-                    // Connection establishment and authentication
-                    try ( ClientSession session = client.connect(username, host, port).verify(10000).getSession()) {
+                    try (ClientSession session = client.connect(username, host, port).verify(10000).getSession()) {
                         session.addPasswordIdentity(password);
                         session.auth().verify(50000);
-                        System.out.println("Connection establihed");
+                        System.out.println("Connected to Drone");
 
-                        // Create a channel
                         channel = session.createChannel(Channel.CHANNEL_SHELL);
+                        System.out.println("Starting shell");
+
                         ByteArrayOutputStream responseStream = new ByteArrayOutputStream();
                         channel.setOut(responseStream);
-
-                        // Open channel
-                        channel.open().verify(5, TimeUnit.SECONDS);
+                        channel.open().verify(5,TimeUnit.SECONDS);
+                        System.out.println("READY TO SEND COMMANDS TO DRONE");
                         try (OutputStream pipedIn = channel.getInvertedIn()) {
-                            pipedIn.write(command[0].getBytes());
-                            pipedIn.flush();
+                            while( true ) {
+                                if( newcommand == true ) {
+                                    pipedIn.write(command.getBytes());
+                                    pipedIn.flush();
+                                    newcommand = false;
+                                    System.out.println("sent " + command + "to drone");
+                                }
+                                else if( newcommand == false) continue;
+                                else break;
+                            }
                         }
 
-                        // Close channel
-                        channel.waitFor(EnumSet.of(ClientChannelEvent.CLOSED),
-                                TimeUnit.SECONDS.toMillis(5));
+                        channel.waitFor(EnumSet.of(ClientChannelEvent.CLOSED), TimeUnit.SECONDS.toMillis(5));
+
+                        String responseString = new String(responseStream.toByteArray());
+                        System.out.println(responseString);
+
+                        System.out.println("End of Run");
 
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -97,13 +118,13 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
+        thread.start();
 
-        //TextLog
+
+
         TextView hlog = (TextView) root.findViewById( R.id.timeRunning );
         hlog.setMovementMethod( new ScrollingMovementMethod() );
 
-
-        //SETTING UP BUTTONS
         Button btn1 = (Button) root.findViewById( R.id.armButton );
         Button btn2 = (Button) root.findViewById( R.id.disarmButton );
         Button btn3 = (Button) root.findViewById( R.id.takeoffButton );
@@ -117,6 +138,8 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Log.i(APPNAME, "Arm Button Pressed");
                 //Communicate with Drone
+                command = "echo 'arm' >> commands.txt\n";
+                newcommand = true;
                 hlog.append("\nTIME XX:XX- Drone Armed...");
 
                 command[0] = "echo 'arm' > commands.tx\n";
@@ -130,6 +153,8 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Log.i(APPNAME, "Disarm Button Pressed");
                 //Communicate with Drone
+                command = "echo 'disarm' >> commands.txt\n";
+                newcommand = true;
                 hlog.append("\nTIME XX:XX- Drone Disarmed...");
 
                 command[0] = "echo 'disarm' > commands.tx\n";
@@ -143,6 +168,8 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Log.i(APPNAME, "Takeoff Button Pressed");
                 //Communicate with Drone
+                command = "echo 'takeoff' >> commands.txt\n";
+                newcommand = true;
                 hlog.append("\nTIME XX:XX- Drone Taking off...");
 
                 command[0] = "echo 'takeoff' > commands.tx\n";
@@ -156,6 +183,8 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Log.i(APPNAME, "Land Button Pressed");
                 //Communicate with Drone
+                command = "echo 'land' >> commands.txt\n";
+                newcommand = true;
                 hlog.append("\nTIME XX:XX- Drone Landing...");
 
                 command[0] = "echo 'land' > commands.tx\n";
@@ -169,6 +198,8 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Log.i(APPNAME, "Hover Button Pressed");
                 //Communicate with Drone
+                command = "echo 'hover' >> commands.txt\n";
+                newcommand = true;
                 hlog.append("\nTIME XX:XX- Drone Hovering...");
 
                 command[0] = "echo 'hover' > commands.tx\n";
@@ -182,6 +213,8 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Log.i(APPNAME, "Spray Button Pressed");
                 //Communicate with Drone
+                command = "echo 'spray' >> commands.txt\n";
+                newcommand = true;
                 hlog.append("\nTIME XX:XX- Drone Spraying...");
 
                 command[0] = "echo 'spray' > commands.tx\n";
