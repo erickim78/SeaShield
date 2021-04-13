@@ -70,7 +70,7 @@ public class HomeFragment extends Fragment {
          */
         host = "192.168.0.72";
         username = "pi";
-        password = "Bloi1a2b3c";
+        password = "placeholder";
         port = 22;
 
         String key = "user.home";
