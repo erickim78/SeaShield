@@ -41,6 +41,7 @@ public class HomeFragment extends Fragment {
         });
 
          */
+        
 
         TextView hlog = (TextView) root.findViewById( R.id.timeRunning );
         hlog.setMovementMethod( new ScrollingMovementMethod() );
